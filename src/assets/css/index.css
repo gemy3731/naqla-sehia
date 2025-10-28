@@ -1,5 +1,6 @@
 @import "./colors.css";
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
 
 html{
     word-spacing: 1px;
@@ -18,3 +19,4 @@ button{
 .custom-gradient{
     background: var(--color-gradient);
 }
+
