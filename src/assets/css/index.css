@@ -1,4 +1,4 @@
-@import "colors.css";
+@import "./colors.css";
 @import "tailwindcss";
 
 html{
@@ -13,4 +13,8 @@ body{
 
 button{
     cursor: pointer;
+}
+
+.custom-gradient{
+    background: var(--color-gradient);
 }
