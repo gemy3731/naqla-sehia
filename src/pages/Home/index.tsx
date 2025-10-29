@@ -3,12 +3,12 @@ import ProductGrid from "../../components/ProductGrid";
 import Layout from "../../layouts";
 import type { Product } from "../../models/product.model";
 
+export interface RootState {
+   products: {
+     products: Product[];
+   };
+ }
 const Home = () => {
-  interface RootState {
-    products: {
-      products: Product[];
-    };
-  }
 
   const products = useSelector((state: RootState) => state.products.products);
   return (

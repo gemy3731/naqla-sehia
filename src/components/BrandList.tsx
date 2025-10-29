@@ -2,12 +2,18 @@ import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import useAPI from "../hooks/useAPI";
 import type { Brand } from "../models/brand.model";
+// import { useSelector } from "react-redux";
+// import type { RootState } from "../pages/Home";
 
 const BrandList = () => {
   const [isBrandListopen, setIsBrandListOpen] = useState<boolean>(false);
   const [brands, setBrands] = useState<Brand[]>([]);
   const [selectedBrand, setSelectedBrand] = useState<string>("All Brands");
+  // const products = useSelector((state: RootState) => state.products.products);
   const { GET } = useAPI();
+  // const brandSet = new Set(products.map((product) => product.brand_info.id));
+  // const brandArray = Array.from(brandSet);
+  // console.log("Brand Array:", brandArray);
   const handleClick = () => {
     setIsBrandListOpen(!isBrandListopen);
   };
@@ -24,6 +30,10 @@ const BrandList = () => {
       console.error("Error fetching brands:", error);
     }
   };
+  // const getBrandSlugById = (id: number): string => {
+  //   const brand = brands.find((brand) => brand.id === id);
+  //   return brand ? brand.slug : "";
+  // };
   useEffect(() => {
     fetchBrands();
     //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,7 +50,7 @@ const BrandList = () => {
       {isBrandListopen && (
         <div className="absolute top-12 left-0 w-[200px] bg-white border border-(--color-border) rounded-2xl z-10">
           <ul className="flex flex-wrap items-center p-1 gap-1">
-            {brands ? (
+            {brands.length ? (
               <>
                 <li
                   onClick={() => handleSelect("All Brands")}

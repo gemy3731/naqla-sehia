@@ -15,7 +15,7 @@ const CategoryList = () => {
   const fetchCategories = async () => {
     try {
       const data = await GET("categories");
-      console.log(data);
+      // console.log(data);
       (data.categories as Category[]).forEach((category: Category) => {
         getSubCategories(category.id);
       });
@@ -26,7 +26,7 @@ const CategoryList = () => {
   const getSubCategories = async (categoryId: number) => {
     try {
       const data = await GET(`categories/id/${categoryId}`);
-      console.log(data);
+      // console.log(data);
       setCategories((prev) => [...prev, data]);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -35,7 +35,7 @@ const CategoryList = () => {
   const getProductsByCategory = async (categoryId: number) => {
     try {
       const data = await GET(`products/getbycat/${categoryId}`);
-      console.log(data);
+      // console.log(data);
       dispatch(getProducts(data.products));
     } catch (error) {
       console.error("Error fetching products by category:", error);
@@ -57,7 +57,7 @@ const CategoryList = () => {
   return (
     <div className="space-y-1">
       {categories.map((category) => (
-        <div key={category.id} className="space-y-1">
+        <div key={category.id + category.slug + category.sub_categories +Math.random()*1000} className="space-y-1">
           <button
             onClick={() => handleCategoryClick(category.id)}
             className={`w-full flex justify-between items-center  hover:bg-(--color-primary) hover:text-white px-4 py-2 rounded-[10px] ${
@@ -74,7 +74,7 @@ const CategoryList = () => {
             <div className="ml-4 space-y-1">
               {category.sub_categories.map((sub) => (
                 <button
-                  key={sub.id}
+                  key={sub.id + sub.slug + category.id + Math.random()*1000}
                   onClick={() => handleSubCategoryClick(sub.id)}
                   className={`w-full flex justify-between items-center text-sm  hover:bg-(--color-primary) hover:text-white px-4 py-2 rounded-[10px] ${
                     selectedSubCategory === sub.id
