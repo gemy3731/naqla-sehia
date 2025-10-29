@@ -7,7 +7,6 @@ const Sidebar = () => {
         <div className="h-full w-full overflow-auto scrollbar-thin">
           <div className="p-3">
             <h2 className="mb-4 text-lg font-semibold">Categories</h2>
-            <button className="w-full flex justify-between items-center  hover:bg-(--color-primary) px-4 py-2 rounded-[10px]">All Products</button>
             <CategoryList />
           </div>
         </div>

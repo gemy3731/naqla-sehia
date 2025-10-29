@@ -1,10 +1,25 @@
-import Layout from "../../layouts"
-
+import { useSelector } from "react-redux";
+import ProductGrid from "../../components/ProductGrid";
+import Layout from "../../layouts";
+import type { Product } from "../../models/product.model";
 
 const Home = () => {
-  return (
-    <Layout>Home</Layout>
-  )
-}
+  interface RootState {
+    products: {
+      products: Product[];
+    };
+  }
 
-export default Home
+  const products = useSelector((state: RootState) => state.products.products);
+  return (
+    <Layout>
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold">All Products</h2>
+        <p className="text-gray-500">{products.length} products found</p>
+      </div>
+      <ProductGrid products={products} />
+    </Layout>
+  );
+};
+
+export default Home;
